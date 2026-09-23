@@ -1,0 +1,30 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Elements fade/slide in as they enter the viewport (JS toggles .in-view)
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity $dur-slow $ease-out, transform $dur-slow $ease-out;
+
+  &.in-view { opacity: 1; transform: translateY(0); }
+
+  @include reduced-motion {
+    opacity: 1; transform: none; transition: none;
+  }
+}
+
+// Stagger children of a revealed group
+[data-reveal-group] > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity $dur-mid $ease-out, transform $dur-mid $ease-out;
+
+  @include reduced-motion { opacity: 1; transform: none; }
+}
+[data-reveal-group].in-view > * { opacity: 1; transform: translateY(0); }
+@for $i from 1 through 8 {
+  [data-reveal-group].in-view > *:nth-child(#{$i}) { transition-delay: $i * 0.07s; }
+}
+
+.hero [data-reveal] { transition-delay: 0.1s; }

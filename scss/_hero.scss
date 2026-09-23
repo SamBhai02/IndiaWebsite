@@ -1,0 +1,90 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.hero {
+  position: relative;
+  background: $gradient-hero;
+  color: $white;
+  overflow: hidden;
+  padding-block: clamp(80px, 12vw, 140px) clamp(80px, 10vw, 120px);
+
+  &__grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: center;
+
+    @include mq($bp-lg) { grid-template-columns: 1fr; }
+  }
+  &__eyebrow {
+    @include eyebrow-tag;
+    color: $orange-light;
+    border-color: rgba($orange-light, 0.4);
+    background: rgba($white, 0.06);
+  }
+  h1 {
+    color: $white;
+    margin-top: 18px;
+    max-width: 15ch;
+  }
+  &__lead {
+    color: rgba($white, 0.72);
+    font-size: $fs-lead;
+    max-width: 46ch;
+    margin-top: 18px;
+  }
+  &__actions { @include flex(flex-start, center, 16px); margin-top: 36px; flex-wrap: wrap; }
+
+
+  &__visual{position:relative;
+  svg{width:100%;height:auto;}
+  .node{
+    transform-origin:center;animation:pulse 3.2s ease-in-out infinite;
+    .n2{animation-delay:.5s;}
+    .n3{animation-delay:1s;}
+    .n4{animation-delay:1.5s;}
+    .n5{animation-delay:2s;}
+  }
+  @keyframes pulse{0%,100%{opacity:.55;}50%{opacity:1;}}
+
+  .linepath{stroke-dasharray:6 8;animation:dash 14s linear infinite;}
+  @keyframes dash{to{stroke-dashoffset:-280;}}
+}
+
+@media (prefers-reduced-motion:reduce){.node{animation:none;opacity:.85;}.linepath{animation:none;}}
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.marquee {
+  border-block: $border-width solid rgba($violet-deep, 0.08);
+  padding-block: 26px;
+  overflow: hidden;
+  background: $cream;
+
+  &__track {
+    display: flex;
+    gap: 64px;
+    width: max-content;
+    animation: scrollX 26s linear infinite;
+    @include reduced-motion { animation: none; }
+  }
+
+  &__item {
+    font-family: $font-display;
+    font-size: 1rem;
+    color: $grey;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+}
+
+@keyframes scrollX {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

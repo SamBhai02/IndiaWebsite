@@ -1,0 +1,47 @@
+@use 'variables' as *;
+
+@mixin mq($bp) {
+  @media (max-width: $bp) { @content; }
+}
+
+@mixin container {
+  max-width: $max-width;
+  margin-inline: auto;
+  padding-inline: $gutter;
+}
+
+@mixin section {
+  padding-block: clamp(64px, 9vw, 128px);
+}
+
+@mixin flex($justify: flex-start, $align: center, $gap: 0) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin eyebrow-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: $orange;
+  padding: 6px 14px;
+  border: $border-width solid rgba($orange, 0.35);
+  border-radius: 100px;
+  background: rgba($orange, 0.06);
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid $orange;
+    outline-offset: 3px;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) { @content; }
+}

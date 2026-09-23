@@ -1,0 +1,61 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.site-footer {
+  background: $violet-darker;
+  color: rgba($white, 0.65);
+  padding-block: 72px 32px;
+
+  .container {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+
+    @include mq($bp-md) { grid-template-columns: 1fr 1fr; }
+    @include mq($bp-sm) { grid-template-columns: 1fr; }
+  }
+
+  &__brand {
+    font-family: $font-display;
+    color: $white;
+    font-size: 1.15rem;
+    margin-bottom: 14px;
+  }
+
+  &__desc { max-width: 280px; color: rgba($white, 0.55); }
+
+  h4 {
+    color: $white;
+    font-size: 0.85rem;
+    text-transform: none;
+    margin-bottom: 18px;
+    font-family: $font-display;
+  }
+
+  li { margin-bottom: 10px; }
+
+  a { color: rgba($white, 0.6); transition: color $dur-fast $ease-out; }
+  a:hover { color: $orange; }
+
+  &__bottom {
+    @include container;
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: $border-width solid rgba($white, 0.1);
+    @include flex(space-between, center);
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: rgba($white, 0.45);
+  }
+
+  &__social { @include flex(flex-start, center, 14px); }
+  &__social a {
+    width: 36px; height: 36px;
+    border: $border-width solid rgba($white, 0.18);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    &:hover { border-color: $orange; }
+  }
+}

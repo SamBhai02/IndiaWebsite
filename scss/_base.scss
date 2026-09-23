@@ -1,0 +1,88 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  @include reduced-motion { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  font-family: $font-body;
+  font-size: $fs-body;
+  line-height: 1.6;
+  color: $ink;
+  background: $cream;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+ul, ol { list-style: none; margin: 0; padding: 0; }
+
+button { font-family: inherit; cursor: pointer; }
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-family: $font-display;
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: $fs-h1; }
+h2 { font-size: $fs-h2; }
+h3 { font-size: $fs-h3; }
+
+p { margin: 0 0 1em; color: $grey; }
+
+.container { @include container; }
+.section { @include section; }
+.section--tint { background: $violet-tint; }
+.section--dark {
+  background: $violet-darker;
+  color: rgba($white, 0.85);
+  h2, h3 { color: $white; }
+  p { color: rgba($white, 0.65); }
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: clamp(36px, 5vw, 64px);
+
+  &--center { margin-inline: auto; text-align: center; }
+}
+
+.eyebrow { @include eyebrow-tag; margin-bottom: 18px; }
+
+.lead {
+  font-size: $fs-lead;
+  color: $grey;
+}
+
+::selection { background: $orange; color: $white; }
+
+a, button { @include focus-ring; }
+
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 12px;
+  background: $violet-deep;
+  color: $white;
+  padding: 10px 18px;
+  border-radius: $radius-sm;
+  z-index: 400;
+  transition: top $dur-fast $ease-out;
+  &:focus { top: 12px; }
+}

@@ -1,0 +1,60 @@
+// ============================
+// Design tokens — TechBait
+// ============================
+
+// Core palette
+$violet-deep:   #3a185b; // primary
+$violet-darker: #260f3d; // shade for depth / footer
+$violet-tint:   #f2ecf9; // light section background
+$orange:        #e66608; // accent
+$orange-light:  #ff8a3d; // hover / gradient partner
+$ink:           #1a1023; // near-black text
+$grey:          #6d6479; // secondary text
+$grey-light:    #ded6e6; // borders
+$white:         #ffffff;
+$cream:         #fbfaf9;
+
+// Gradients
+$gradient-hero: radial-gradient(620px 460px at 82% 8%, rgba(230, 102, 4, 0.35), transparent 60%),linear-gradient(155deg, #2c0d4d 0%, #200733 62%, #180524 100%);
+$gradient-cta:  linear-gradient(120deg, $orange 0%, $orange-light 100%);
+
+// Typography
+$font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+$font-body:    'Inter', 'Segoe UI', sans-serif;
+$font-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+// Type scale
+$fs-h1: clamp(2.6rem, 5vw, 4.6rem);
+$fs-h2: clamp(2rem, 3.4vw, 3rem);
+$fs-h3: clamp(1.3rem, 2vw, 1.7rem);
+$fs-lead: clamp(1.1rem, 1.4vw, 1.3rem);
+$fs-body: 1rem;
+$fs-small: 0.875rem;
+
+// Spacing
+$space-unit: 8px;
+@function sp($n) { @return $space-unit * $n; }
+
+// Layout
+$max-width: 1240px;
+$gutter: 24px;
+$radius-sm: 4px;
+$radius-md: 10px;
+$border-width: 1px;
+
+// Motion
+$ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+$dur-fast: 0.2s;
+$dur-mid: 0.45s;
+$dur-slow: 0.8s;
+
+// Breakpoints
+$bp-sm: 540px;
+$bp-md: 768px;
+$bp-lg: 1080px;
+$bp-xl: 1320px;
+
+// Z-index
+$z-header: 100;
+$z-overlay: 200;
+$z-modal: 300;

@@ -1,0 +1,130 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+  background: rgba($cream, 0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: $border-width solid rgba($violet-deep, 0.08);
+  transition: box-shadow $dur-fast $ease-out;
+
+  &.is-scrolled { box-shadow: 0 6px 24px -14px rgba($ink, 0.25); }
+
+  .container { @include flex(space-between, center); height: 78px; }
+}
+
+.brand {
+  @include flex(flex-start, center, 10px);
+  font-family: $font-display;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: $violet-deep;
+
+  &__mark {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: $gradient-hero;
+    display: grid;
+    place-items: center;
+    color: $white;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  .logo-img{
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+}
+
+.nav {
+  @include flex(flex-end, center, 4px);
+
+  @include mq($bp-lg) {
+    position: fixed;
+    inset: 78px 0 0 0;
+    background: $cream;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 20px $gutter 40px;
+    transform: translateY(-12px);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform $dur-mid $ease-out, opacity $dur-mid $ease-out, visibility $dur-mid;
+    overflow-y: auto;
+
+    &.is-open { transform: translateY(0); opacity: 1; visibility: visible; }
+  }
+}
+
+.nav__list {
+  @include flex(center, center, 2px);
+
+  @include mq($bp-lg) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+}
+
+.nav__link {
+  position: relative;
+  padding: 10px 16px;
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: $ink;
+  border-radius: $radius-sm;
+  transition: color $dur-fast $ease-out, background $dur-fast $ease-out;
+
+  &:hover { color: $violet-deep; background: rgba($violet-deep, 0.06); }
+
+  &.is-active { color: $violet-deep; font-weight: 600; }
+  &.is-active::after {
+    content: '';
+    position: absolute;
+    left: 16px; right: 16px; bottom: 4px;
+    height: 2px;
+    background: $orange;
+    border-radius: 2px;
+  }
+
+  @include mq($bp-lg) {
+    padding: 16px 4px;
+    border-bottom: $border-width solid $grey-light;
+    font-size: 1.05rem;
+  }
+}
+
+.nav__cta { margin-left: 14px; @include mq($bp-lg) { margin: 22px 0 0; } }
+
+.nav-toggle {
+  display: none;
+  width: 42px; height: 42px;
+  border: none;
+  background: transparent;
+  position: relative;
+  z-index: $z-overlay;
+
+  @include mq($bp-lg) { display: block; }
+
+  span, span::before, span::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 9px; right: 9px;
+    height: 2px;
+    background: $violet-deep;
+    border-radius: 2px;
+    transition: transform $dur-fast $ease-out, opacity $dur-fast $ease-out, top $dur-fast $ease-out;
+  }
+  span { top: 20px; }
+  span::before { top: -8px; }
+  span::after { top: 8px; }
+
+  &.is-active span { background: transparent; }
+  &.is-active span::before { transform: rotate(45deg); top: 0; }
+  &.is-active span::after { transform: rotate(-45deg); top: 0; }
+}
