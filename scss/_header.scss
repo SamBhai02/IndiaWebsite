@@ -56,7 +56,8 @@
     transition: transform $dur-mid $ease-out, opacity $dur-mid $ease-out, visibility $dur-mid;
     overflow-y: auto;
 
-    &.is-open { transform: translateY(0); opacity: 1; visibility: visible; }
+    &.is-open { transform: translateY(0); opacity: 1; visibility: visible;height: 100vh; }
+
   }
 }
 
@@ -68,6 +69,8 @@
     align-items: stretch;
     gap: 0;
   }
+  li{
+    @include mq($bp-lg) {margin-bottom: 10px;}}
 }
 
 .nav__link {
@@ -92,8 +95,8 @@
   }
 
   @include mq($bp-lg) {
-    padding: 16px 4px;
-    border-bottom: $border-width solid $grey-light;
+    padding: 8px 16px;
+    // border-bottom: $border-width solid $grey-light;
     font-size: 1.05rem;
   }
 }
@@ -102,7 +105,7 @@
 
 .nav-toggle {
   display: none;
-  width: 42px; height: 42px;
+  width: 55px; height: 55px;
   border: none;
   background: transparent;
   position: relative;
@@ -120,7 +123,7 @@
     border-radius: 2px;
     transition: transform $dur-fast $ease-out, opacity $dur-fast $ease-out, top $dur-fast $ease-out;
   }
-  span { top: 20px; }
+  span { top: 27px; }
   span::before { top: -8px; }
   span::after { top: 8px; }
 
