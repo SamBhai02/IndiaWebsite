@@ -25,6 +25,12 @@
   &--2 { grid-template-columns: repeat(2, 1fr); @include mq($bp-md) { grid-template-columns: 1fr; } }
   &--4 { grid-template-columns: repeat(4, 1fr); @include mq($bp-lg) { grid-template-columns: repeat(2, 1fr); } @include mq($bp-sm) { grid-template-columns: 1fr; } }
 }
+.what-we-believe{ 
+  .grid { grid-template-columns: repeat(4, 1fr);
+    @include mq($bp-lg) { grid-template-columns: repeat(2, 1fr); }
+    @include mq($bp-sm) { grid-template-columns: 1fr; }
+} }
+
 
 // ---- Service / feature card ----
 .card {
